@@ -1,6 +1,13 @@
-/* .calculator {
-    text-align: center;
-    border: 1em;
-    border-color: black;
-    background-color: rgb(207, 216, 226);
-} */
+.calculator {
+    text-align: left;
+    border: 0.5em;
+    border-style: outset;
+    border-color:slategray;
+    border-radius: 0.2em;
+    width: 25%;
+
+}
+
+*{
+    padding: 0.5em;
+}

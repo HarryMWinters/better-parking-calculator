@@ -1,6 +1,7 @@
 import React from 'react';
 import LotSelect from '../lot-select/lot-select'
 import DateTimeSelect from '../date-select/date-select'
+import CalculateButton from '../calculate-button/calculate-button'
 import "./calculator.css"
 
 const parkingOptions = [
@@ -24,6 +25,7 @@ class calculator extends React.Component {
         this.setParkingOption = this.setParkingOption.bind(this);
         this.entryDateUpdateHandler = this.entryDateUpdateHandler.bind(this)
         this.exitDateUpdateHandler = this.exitDateUpdateHandler.bind(this)
+        this.calculateTotal = this.calculateTotal.bind(this)
     }
     
     toggleDropdown(){
@@ -44,10 +46,13 @@ class calculator extends React.Component {
         this.setState({exitDateTime: dateTime})
     }
 
+    calculateTotal(){
+        console.log("calculating...")
+    }
+
     render(){
         return (
-            <div>
-                <h2>I'm a Calculator</h2>
+            <div className="calculator">
                 <LotSelect 
                     dropDownHidden={this.state.dropDownHidden}
                     parkingOptions={parkingOptions} 
@@ -61,7 +66,8 @@ class calculator extends React.Component {
                 <DateTimeSelect 
                     dateTime={this.state.exitDateTime}
                     updateHandler={this.exitDateUpdateHandler}
-                    label="Exited at:"/>
+                    label="Exited at: "/>
+                <CalculateButton handleClick={this.calculateTotal}/>
             </div>);
         }
 };

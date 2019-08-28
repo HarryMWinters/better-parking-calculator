@@ -10,12 +10,20 @@ function dateTimeSelect(props){
                     className="dateTimeInpute"
                     type="datetime-local"
                     name={props.label}
-                    value={props.value}
-                    onChange={(event) => props.updateHandler(event.target.value)}
+                    value={_toISOstring(props.value)}
+                    onChange={(event) => props.updateHandler(new Date(event.target.value))}
                 />
             </form>
         </React.Fragment>
-    )
-}
+    );
+};
+
+function _toISOstring(dateTime){
+    if(isNaN(dateTime.getTime())){
+        return null
+    } else {
+        return dateTime.toISOString().slice(0,-1);
+    }
+};
 
 export default dateTimeSelect;

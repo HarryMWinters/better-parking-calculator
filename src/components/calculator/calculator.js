@@ -18,14 +18,14 @@ class calculator extends React.Component {
         this.state = {
             dropDownHidden: true,
             parkingOptionSelected: null,
-            entryDateTime: undefined,
-            exitDateTime: undefined,
+            entryDateTime: new Date(),
+            exitDateTime: new Date()
         };
         this.toggleDropdown = this.toggleDropdown.bind(this);
         this.setParkingOption = this.setParkingOption.bind(this);
-        this.entryDateUpdateHandler = this.entryDateUpdateHandler.bind(this)
-        this.exitDateUpdateHandler = this.exitDateUpdateHandler.bind(this)
-        this.calculateTotal = this.calculateTotal.bind(this)
+        this.entryDateUpdateHandler = this.entryDateUpdateHandler.bind(this);
+        this.exitDateUpdateHandler = this.exitDateUpdateHandler.bind(this);
+        this.calculateTotal = this.calculateTotal.bind(this);
     }
     
     toggleDropdown(){
@@ -48,6 +48,12 @@ class calculator extends React.Component {
 
     calculateTotal(){
         console.log(this.state)
+        let milliSecondsSpent = this.state.exitDateTime - this.state.entryDateTime
+        let hoursSpent = milliSecondsSpent / (1000*60*60)
+        if (hoursSpent < 0){
+            console.error("Exit before entry :|")
+        }
+        console.log(hoursSpent)
     }
 
     render(){

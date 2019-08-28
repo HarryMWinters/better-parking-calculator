@@ -47,7 +47,7 @@ class calculator extends React.Component {
     }
 
     calculateTotal(){
-        console.log("calculating...")
+        console.log(this.state)
     }
 
     render(){
@@ -60,11 +60,11 @@ class calculator extends React.Component {
                     selected={this.state.parkingOptionSelected} 
                     setChosenOption={this.setParkingOption}/>
                 <DateTimeSelect 
-                    dateTime={this.state.entryDateTime}
+                    value={this.state.entryDateTime}
                     updateHandler={this.entryDateUpdateHandler}
                     label="Entered at:"/>
                 <DateTimeSelect 
-                    dateTime={this.state.exitDateTime}
+                    value={this.state.exitDateTime}
                     updateHandler={this.exitDateUpdateHandler}
                     label="Exited at: "/>
                 <CalculateButton handleClick={this.calculateTotal}/>

@@ -10,8 +10,8 @@ function dateTimeSelect(props){
                     className="dateTimeInpute"
                     type="datetime-local"
                     name={props.label}
-                    value={props.dateTime}
-                    onChange={props.handleChange}
+                    value={props.value}
+                    onChange={(event) => props.updateHandler(event.target.value)}
                 />
             </form>
         </React.Fragment>

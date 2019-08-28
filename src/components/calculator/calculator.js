@@ -17,9 +17,13 @@ class calculator extends React.Component {
         this.state = {
             dropDownHidden: true,
             parkingOptionSelected: null,
+            entryDateTime: undefined,
+            exitDateTime: undefined,
         };
         this.toggleDropdown = this.toggleDropdown.bind(this);
         this.setParkingOption = this.setParkingOption.bind(this);
+        this.entryDateUpdateHandler = this.entryDateUpdateHandler.bind(this)
+        this.exitDateUpdateHandler = this.exitDateUpdateHandler.bind(this)
     }
     
     toggleDropdown(){
@@ -31,6 +35,15 @@ class calculator extends React.Component {
     setParkingOption(option){
         this.setState({parkingOptionSelected: option})
     }
+
+    entryDateUpdateHandler(dateTime){
+        this.setState({entryDateTime: dateTime})
+    }
+
+    exitDateUpdateHandler(dateTime){
+        this.setState({exitDateTime: dateTime})
+    }
+
     render(){
         return (
             <div>
@@ -41,7 +54,14 @@ class calculator extends React.Component {
                     toggleDropdown={this.toggleDropdown} 
                     selected={this.state.parkingOptionSelected} 
                     setChosenOption={this.setParkingOption}/>
-                <DateTimeSelect/>
+                <DateTimeSelect 
+                    dateTime={this.state.entryDateTime}
+                    updateHandler={this.entryDateUpdateHandler}
+                    label="Entered at:"/>
+                <DateTimeSelect 
+                    dateTime={this.state.exitDateTime}
+                    updateHandler={this.exitDateUpdateHandler}
+                    label="Exited at:"/>
             </div>);
         }
 };

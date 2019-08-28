@@ -1,10 +1,20 @@
 import React from 'react';
+import './date-select.css'
 
-function dateTimeSelect(){
+function dateTimeSelect(props){
     return (
-        <div>
-            I'm a dateTimeSelector!
-        </div>
+        <React.Fragment>
+            <form className="form">
+                <label className="label" >{props.label}</label>
+                <input
+                    className="dateTimeInpute"
+                    type="datetime-local"
+                    name={props.label}
+                    value={props.dateTime}
+                    onChange={props.handleChange}
+                />
+            </form>
+        </React.Fragment>
     )
 }
 

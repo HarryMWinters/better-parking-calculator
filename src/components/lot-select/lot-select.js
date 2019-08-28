@@ -4,8 +4,8 @@ import "./lot-select.css"
 function LotSelect (props){
     return (
         <div>
-            <div  className="LotSelect" onMouseLeave={props.toggleDropdown}>
-                <div onMouseEnter={props.toggleDropdown} > 
+            <div  className="LotSelect" onMouseLeave={props.toggleDropdown} onClick={props.toggleDropdown}>
+                <div onMouseEnter={props.toggleDropdown}> 
                     {props.selected == null? "Choose Parking Option": props.selected} 
                 </div>
                 {props.dropDownHidden ? null: (

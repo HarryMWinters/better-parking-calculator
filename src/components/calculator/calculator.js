@@ -1,4 +1,5 @@
 import React from 'react';
+import TotalReadOut from '../total-readout/total-readout'
 import LotSelect from '../lot-select/lot-select'
 import DateTimeSelect from '../date-select/date-select'
 import CalculateButton from '../calculate-button/calculate-button'
@@ -19,7 +20,8 @@ class calculator extends React.Component {
             dropDownHidden: true,
             parkingOptionSelected: null,
             entryDateTime: new Date(),
-            exitDateTime: new Date()
+            exitDateTime: new Date(),
+            hoursParked: null
         };
         this.toggleDropdown = this.toggleDropdown.bind(this);
         this.setParkingOption = this.setParkingOption.bind(this);
@@ -47,15 +49,17 @@ class calculator extends React.Component {
     }
 
     calculateTotal(){
-        console.log(this.state)
         let milliSecondsSpent = this.state.exitDateTime - this.state.entryDateTime
         let hoursSpent = milliSecondsSpent / (1000*60*60)
         if (hoursSpent < 0){
             console.error("Exit before entry :|")
         }
-        console.log(hoursSpent)
+        this.setState({hoursParked: hoursSpent})
     }
 
+    costFunction(){
+        return "NI"
+    }
     render(){
         return (
             <div className="calculator">
@@ -74,6 +78,9 @@ class calculator extends React.Component {
                     updateHandler={this.exitDateUpdateHandler}
                     label="Exited at: "/>
                 <CalculateButton handleClick={this.calculateTotal}/>
+                <TotalReadOut 
+                    hours={this.state.hoursParked}
+                    cost={this.costFunction(this.state.hoursParked)}/>
             </div>);
         }
 };

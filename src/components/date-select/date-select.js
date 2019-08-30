@@ -60,6 +60,7 @@ function dateTimeSelect(props) {
             <Form.Control
               type="time"
               onBlur={event => _handleTimeChange(event.target.value)}
+              defaultValue={_extractTimeValue(new Date())}
             />
           </Col>
         </Row>

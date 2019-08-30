@@ -11,9 +11,9 @@ function parkingMenu(props) {
       <Table striped="true">
         <thead>
           <tr>
-            <th></th>
+            <th key="static"></th>
             {pricingTypes.map(t => (
-              <th>{t}</th>
+              <th key={t}>{t}</th>
             ))}
           </tr>
         </thead>
@@ -26,13 +26,13 @@ function parkingMenu(props) {
 function _makeCatagory(catagoryName, catagoryObject) {
   let priceCats = Object.keys(catagoryObject[catagoryName]);
   return (
-    <tr>
-      <td>{catagoryName}</td>
+    <tr key={catagoryName}>
+      <td key={catagoryName}>{catagoryName}</td>
       {priceCats.map(cat =>
         catagoryObject[catagoryName][cat] != null ? (
-          <td>${catagoryObject[catagoryName][cat]}.00</td>
+          <td key={cat}>${catagoryObject[catagoryName][cat]}.00</td>
         ) : (
-          <td>N/A</td>
+          <td key={cat}>N/A</td>
         )
       )}
     </tr>

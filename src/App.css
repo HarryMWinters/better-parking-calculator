@@ -1,10 +1,9 @@
-title {
-  text-align: center;  
+.Container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
 }
 
-.Container {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    
+#typeSelecth4 {
+  padding-right: 0.5em;
 }

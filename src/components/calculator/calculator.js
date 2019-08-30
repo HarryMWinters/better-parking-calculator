@@ -20,8 +20,8 @@ class calculator extends React.Component {
     this.state = {
       dropDownHidden: true,
       parkingOptionSelected: null,
-      entryDateTime: null,
-      exitDateTime: null,
+      entryDateTime: new Date(),
+      exitDateTime: new Date(),
       hoursParked: null,
       parkingInfo: props.parkingInfo
     };

@@ -27,7 +27,9 @@ class calculator extends React.Component {
     };
     this.toggleDropdown = this.toggleDropdown.bind(this);
     this.setParkingOption = this.setParkingOption.bind(this);
-    this.entryDateUpdateHandler = this.entryDateUpdateHandler.bind(this);
+    this.entryDateTimeUpdateHandler = this.entryDateTimeUpdateHandler.bind(
+      this
+    );
     this.exitDateUpdateHandler = this.exitDateUpdateHandler.bind(this);
     this.calculateTotal = this.calculateTotal.bind(this);
   }
@@ -42,8 +44,8 @@ class calculator extends React.Component {
     this.setState({ parkingOptionSelected: option });
   }
 
-  entryDateUpdateHandler(date) {
-    this.setState({ entryDate: date });
+  entryDateTimeUpdateHandler(date) {
+    this.setState({ entryDateTime: date });
   }
 
   exitDateUpdateHandler(date) {
@@ -86,14 +88,14 @@ class calculator extends React.Component {
           <Col>
             <DateTimeSelect
               value={this.state.entryDateTime}
-              dateUpdateHandler={this.entryDateUpdateHandler}
+              dateTimeUpdateHandler={this.entryDateTimeUpdateHandler}
               label="Entered at:"
             />
           </Col>
           <Col>
             <DateTimeSelect
               value={this.state.exitDateTime}
-              dateUpdateHandler={this.exitDateUpdateHandler}
+              dateTimeUpdateHandler={this.exitDateUpdateHandler}
               label="Exited at: "
             />
           </Col>

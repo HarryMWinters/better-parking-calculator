@@ -1,11 +1,14 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
+import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 function totalReadout(props) {
   function _formatTime(hoursFloat) {
+    if (hoursFloat === null || hoursFloat <= 0) {
+      return "--:--";
+    }
     if (hoursFloat < 1) {
       return "> 1h";
     } else {
@@ -15,6 +18,21 @@ function totalReadout(props) {
       return hours + ":" + minutesString;
     }
   }
+  const costCard = props.errors ? (
+    <Card>
+      <Card.Header style={{ fontWeight: "bold" }}> </Card.Header>
+      <Card.Body>
+        <Card.Title>{props.errors}</Card.Title>
+      </Card.Body>
+    </Card>
+  ) : (
+    <Card>
+      <Card.Header style={{ fontWeight: "bold" }}>Price: </Card.Header>
+      <Card.Body>
+        <Card.Title>$ {props.cost}</Card.Title>
+      </Card.Body>
+    </Card>
+  );
   return (
     <div>
       <Container style={{ marginTop: "1em" }}>
@@ -31,14 +49,7 @@ function totalReadout(props) {
               </Card.Body>
             </Card>
           </Col>
-          <Col style={{ width: "50%" }}>
-            <Card>
-              <Card.Header style={{ fontWeight: "bold" }}>Price: </Card.Header>
-              <Card.Body>
-                <Card.Title>{props.cost}</Card.Title>
-              </Card.Body>
-            </Card>
-          </Col>
+          <Col style={{ width: "50%" }}>{costCard}</Col>
         </Row>
       </Container>
     </div>

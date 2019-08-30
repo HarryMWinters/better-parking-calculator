@@ -20,9 +20,9 @@ class calculator extends React.Component {
     this.state = {
       dropDownHidden: true,
       parkingOptionSelected: null,
-      entryDateTime: new Date(),
-      exitDateTime: new Date(),
-      hoursParked: "-",
+      entryDateTime: null,
+      exitDateTime: null,
+      hoursParked: null,
       parkingInfo: props.parkingInfo
     };
     this.toggleDropdown = this.toggleDropdown.bind(this);
@@ -55,26 +55,38 @@ class calculator extends React.Component {
   calculateTotal() {
     let milliSecondsSpent = this.state.exitDateTime - this.state.entryDateTime;
     let hoursSpent = milliSecondsSpent / (1000 * 60 * 60);
-    if (hoursSpent < 0) {
-      console.error("Exit before entry :|");
-    }
     this.setState({ hoursParked: hoursSpent });
   }
 
   costFunction() {
+    function _validateState(s) {
+      if (!s.parkingOptionSelected) {
+        return "No parking type selected.";
+      }
+      if (s.hoursParked < 0) {
+        return "Exit time and date before entry time and date.";
+      }
+      return null;
+    }
+
+    const errors = _validateState(this.state);
+    if (errors) {
+      return { price: "Error", error: errors };
+    }
     let hours = this.state.hoursParked;
     const rate = this.state.parkingInfo[this.state.parkingOptionSelected];
     if (hours <= 1) {
-      return rate["Per Hour"];
+      return rate["Per Hour"] ? rate["Per Hour"] : rate["Daily Maximum"];
     }
     const days = Math.floor(hours / 24);
     const weeks = Math.floor(days / 7);
     hours = hours - 24 * days - 24 * 7 * weeks;
-
-    return "-";
+    const price = 12;
+    return { price: price, errors: "" };
   }
 
   render() {
+    const result = this.costFunction(this.state.hoursParked);
     return (
       <div className="calculator">
         <LotSelect
@@ -103,7 +115,8 @@ class calculator extends React.Component {
         <CalculateButton handleClick={this.calculateTotal} />
         <TotalReadOut
           hours={this.state.hoursParked}
-          cost={this.costFunction(this.state.hoursParked)}
+          cost={result.price}
+          errors={result.error}
         />
       </div>
     );

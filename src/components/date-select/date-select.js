@@ -15,7 +15,6 @@ function dateTimeSelect(props) {
         : "" + datetime.getDate();
     const yearMonthDateString =
       datetime.getFullYear() + "-" + monthString + "-" + dateString;
-    console.log(datetime);
     return yearMonthDateString;
   }
   function _extractTimeValue(datetime) {
@@ -31,14 +30,14 @@ function dateTimeSelect(props) {
     return timeString;
   }
   function _handeDateChange(date) {
-    let newDate = new Date(props.value.getTime());
+    let newDate = props.value ? new Date(props.value.getTime()) : new Date();
     newDate.setFullYear(date.slice(0, 4));
     newDate.setMonth(date.slice(5, 7));
     newDate.setDate(date.slice(8, 10));
     props.dateTimeUpdateHandler(newDate);
   }
   function _handleTimeChange(time) {
-    let newDate = new Date(props.value.getTime());
+    let newDate = props.value ? new Date(props.value.getTime()) : new Date();
     newDate.setHours(time.slice(0, 2));
     newDate.setMinutes(time.slice(3, 5));
     props.dateTimeUpdateHandler(newDate);
@@ -54,6 +53,7 @@ function dateTimeSelect(props) {
               type="date"
               name={props.label}
               onBlur={event => _handeDateChange(event.target.value)}
+              defaultValue={_extractDateValue(new Date())}
             />
           </Col>
           <Col>

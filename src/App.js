@@ -40,8 +40,8 @@ function App() {
     <div className="App">
       <Title />
       <Row>
-        <Col style={{ margin: "1em" }}>
-          <Calculator />
+        <Col style={{ margin: "1.5em" }}>
+          <Calculator parkingInfo={parkingInfo} />
         </Col>
         <Col style={{ margin: "1em" }}>
           <ParkingMenu parkingInfo={parkingInfo} />

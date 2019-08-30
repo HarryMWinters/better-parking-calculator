@@ -3,6 +3,8 @@ import TotalReadOut from "../total-readout/total-readout";
 import LotSelect from "../lot-select/lot-select";
 import DateTimeSelect from "../date-select/date-select";
 import CalculateButton from "../calculate-button/calculate-button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const parkingOptions = [
   "Economy Parking",
@@ -20,7 +22,8 @@ class calculator extends React.Component {
       parkingOptionSelected: null,
       entryDateTime: new Date(),
       exitDateTime: new Date(),
-      hoursParked: "-"
+      hoursParked: "-",
+      parkingInfo: props.parkingInfo
     };
     this.toggleDropdown = this.toggleDropdown.bind(this);
     this.setParkingOption = this.setParkingOption.bind(this);
@@ -39,12 +42,12 @@ class calculator extends React.Component {
     this.setState({ parkingOptionSelected: option });
   }
 
-  entryDateUpdateHandler(dateTime) {
-    this.setState({ entryDateTime: dateTime });
+  entryDateUpdateHandler(date) {
+    this.setState({ entryDate: date });
   }
 
-  exitDateUpdateHandler(dateTime) {
-    this.setState({ exitDateTime: dateTime });
+  exitDateUpdateHandler(date) {
+    this.setState({ exitDate: date });
   }
 
   calculateTotal() {
@@ -57,6 +60,15 @@ class calculator extends React.Component {
   }
 
   costFunction() {
+    let hours = this.state.hoursParked;
+    const rate = this.state.parkingInfo[this.state.parkingOptionSelected];
+    if (hours <= 1) {
+      return rate["Per Hour"];
+    }
+    const days = Math.floor(hours / 24);
+    const weeks = Math.floor(days / 7);
+    hours = hours - 24 * days - 24 * 7 * weeks;
+
     return "-";
   }
 
@@ -70,16 +82,22 @@ class calculator extends React.Component {
           selected={this.state.parkingOptionSelected}
           setChosenOption={this.setParkingOption}
         />
-        <DateTimeSelect
-          value={this.state.entryDateTime}
-          updateHandler={this.entryDateUpdateHandler}
-          label="Entered at:"
-        />
-        <DateTimeSelect
-          value={this.state.exitDateTime}
-          updateHandler={this.exitDateUpdateHandler}
-          label="Exited at: "
-        />
+        <Row>
+          <Col>
+            <DateTimeSelect
+              value={this.state.entryDateTime}
+              dateUpdateHandler={this.entryDateUpdateHandler}
+              label="Entered at:"
+            />
+          </Col>
+          <Col>
+            <DateTimeSelect
+              value={this.state.exitDateTime}
+              dateUpdateHandler={this.exitDateUpdateHandler}
+              label="Exited at: "
+            />
+          </Col>
+        </Row>
         <CalculateButton handleClick={this.calculateTotal} />
         <TotalReadOut
           hours={this.state.hoursParked}

@@ -28,10 +28,15 @@ function _makeCatagory(catagoryName, catagoryObject) {
   return (
     <tr>
       <td>{catagoryName}</td>
-      {priceCats.map(cat => (
-        <td>${catagoryObject[catagoryName][cat]}.00</td>
-      ))}
+      {priceCats.map(cat =>
+        catagoryObject[catagoryName][cat] != null ? (
+          <td>${catagoryObject[catagoryName][cat]}.00</td>
+        ) : (
+          <td>N/A</td>
+        )
+      )}
     </tr>
   );
 }
+
 export default parkingMenu;

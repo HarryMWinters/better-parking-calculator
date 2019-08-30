@@ -30,7 +30,7 @@ class calculator extends React.Component {
     this.entryDateTimeUpdateHandler = this.entryDateTimeUpdateHandler.bind(
       this
     );
-    this.exitDateUpdateHandler = this.exitDateUpdateHandler.bind(this);
+    this.exitDateTimeUpdateHandler = this.exitDateTimeUpdateHandler.bind(this);
     this.calculateTotal = this.calculateTotal.bind(this);
   }
 
@@ -48,8 +48,8 @@ class calculator extends React.Component {
     this.setState({ entryDateTime: date });
   }
 
-  exitDateUpdateHandler(date) {
-    this.setState({ exitDate: date });
+  exitDateTimeUpdateHandler(date) {
+    this.setState({ exitDateTime: date });
   }
 
   calculateTotal() {
@@ -95,7 +95,7 @@ class calculator extends React.Component {
           <Col>
             <DateTimeSelect
               value={this.state.exitDateTime}
-              dateTimeUpdateHandler={this.exitDateUpdateHandler}
+              dateTimeUpdateHandler={this.exitDateTimeUpdateHandler}
               label="Exited at: "
             />
           </Col>

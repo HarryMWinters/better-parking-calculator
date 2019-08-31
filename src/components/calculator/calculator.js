@@ -59,11 +59,14 @@ class calculator extends React.Component {
     let milliSecondsSpent = this.state.exitDateTime - this.state.entryDateTime;
     let hoursSpent = milliSecondsSpent / (1000 * 60 * 60);
     this.setState({ hoursParked: hoursSpent });
-    const { price, errors } = this.costFunction();
+    const { price, errors } = this.costFunction(hoursSpent);
     this.setState({ price: price, errors: errors });
   }
 
-  costFunction() {
+  costFunction(hoursParked) {
+    // Had to pass in hoursParked since the state updates
+    // asynchronously.
+    // ToDo: Design this better.
     function _validateState(s) {
       if (!s.parkingOptionSelected) {
         return "No parking type selected.";
@@ -78,7 +81,7 @@ class calculator extends React.Component {
     if (errors) {
       return { price: "Error", errors: errors };
     }
-    let hours = this.state.hoursParked;
+    let hours = hoursParked;
     const rate = this.state.parkingInfo[this.state.parkingOptionSelected];
     if (hours <= 1) {
       return rate["Per Hour"]

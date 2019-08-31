@@ -29,7 +29,7 @@ function totalReadout(props) {
     <Card>
       <Card.Header style={{ fontWeight: "bold" }}>Price: </Card.Header>
       <Card.Body>
-        <Card.Title>$ {props.cost}</Card.Title>
+        <Card.Title> {props.cost ? props.cost : "--"}</Card.Title>
       </Card.Body>
     </Card>
   );

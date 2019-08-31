@@ -18,12 +18,14 @@ class calculator extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      parkingInfo: props.parkingInfo,
       dropDownHidden: true,
       parkingOptionSelected: null,
       entryDateTime: new Date(),
       exitDateTime: new Date(),
       hoursParked: null,
-      parkingInfo: props.parkingInfo
+      price: null,
+      errors: ""
     };
     this.toggleDropdown = this.toggleDropdown.bind(this);
     this.setParkingOption = this.setParkingOption.bind(this);
@@ -32,6 +34,7 @@ class calculator extends React.Component {
     );
     this.exitDateTimeUpdateHandler = this.exitDateTimeUpdateHandler.bind(this);
     this.calculateTotal = this.calculateTotal.bind(this);
+    this.costFunction = this.costFunction.bind(this);
   }
 
   toggleDropdown() {
@@ -41,21 +44,23 @@ class calculator extends React.Component {
   }
 
   setParkingOption(option) {
-    this.setState({ parkingOptionSelected: option });
+    this.setState({ parkingOptionSelected: option, newInput: true });
   }
 
   entryDateTimeUpdateHandler(date) {
-    this.setState({ entryDateTime: date });
+    this.setState({ entryDateTime: date, newInput: true });
   }
 
   exitDateTimeUpdateHandler(date) {
-    this.setState({ exitDateTime: date });
+    this.setState({ exitDateTime: date, newInput: true });
   }
 
   calculateTotal() {
     let milliSecondsSpent = this.state.exitDateTime - this.state.entryDateTime;
     let hoursSpent = milliSecondsSpent / (1000 * 60 * 60);
     this.setState({ hoursParked: hoursSpent });
+    const { price, errors } = this.costFunction();
+    this.setState({ price: price, errors: errors });
   }
 
   costFunction() {
@@ -63,7 +68,7 @@ class calculator extends React.Component {
       if (!s.parkingOptionSelected) {
         return "No parking type selected.";
       }
-      if (s.hoursParked < 0) {
+      if (s.exitDateTime - s.entryDateTime < 0) {
         return "Exit time and date before entry time and date.";
       }
       return null;
@@ -71,22 +76,29 @@ class calculator extends React.Component {
 
     const errors = _validateState(this.state);
     if (errors) {
-      return { price: "Error", error: errors };
+      return { price: "Error", errors: errors };
     }
     let hours = this.state.hoursParked;
     const rate = this.state.parkingInfo[this.state.parkingOptionSelected];
     if (hours <= 1) {
-      return rate["Per Hour"] ? rate["Per Hour"] : rate["Daily Maximum"];
+      return rate["Per Hour"]
+        ? { price: rate["Per Hour"], errors: "" }
+        : { price: rate["Daily Maximum"], errors: "" };
     }
     const days = Math.floor(hours / 24);
     const weeks = Math.floor(days / 7);
-    hours = hours - 24 * days - 24 * 7 * weeks;
-    const price = 12;
+    const remainder = hours - 24 * days - 24 * 7 * weeks;
+    let remainderCost =
+      rate["Daily Maximum"] &&
+      remainder * rate["Per Hour"] < rate["Daily Maximum"]
+        ? remainder * rate["Per Hour"]
+        : rate["Daily Maximum"];
+    const price =
+      weeks * rate["Per Week"] + days * rate["Daily Maximum"] + remainderCost;
     return { price: price, errors: "" };
   }
 
   render() {
-    const result = this.costFunction(this.state.hoursParked);
     return (
       <div className="calculator">
         <LotSelect
@@ -115,8 +127,8 @@ class calculator extends React.Component {
         <CalculateButton handleClick={this.calculateTotal} />
         <TotalReadOut
           hours={this.state.hoursParked}
-          cost={result.price}
-          errors={result.error}
+          cost={this.state.price}
+          errors={this.state.errors}
         />
       </div>
     );

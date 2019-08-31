@@ -31,15 +31,16 @@ function dateTimeSelect(props) {
   }
   function _handeDateChange(date) {
     let newDate = props.value ? new Date(props.value.getTime()) : new Date();
-    newDate.setFullYear(date.slice(0, 4));
-    newDate.setMonth(date.slice(5, 7));
-    newDate.setDate(date.slice(8, 10));
+    newDate.setFullYear(
+      Number(date.slice(0, 4)),
+      Number(date.slice(5, 7)) - 1,
+      Number(date.slice(8, 10))
+    );
     props.dateTimeUpdateHandler(newDate);
   }
   function _handleTimeChange(time) {
     let newDate = props.value ? new Date(props.value.getTime()) : new Date();
-    newDate.setHours(time.slice(0, 2));
-    newDate.setMinutes(time.slice(3, 5));
+    newDate.setHours(Number(time.slice(0, 2)), Number(time.slice(3, 5)));
     props.dateTimeUpdateHandler(newDate);
   }
 

@@ -6,11 +6,11 @@ import Row from "react-bootstrap/Row";
 
 function totalReadout(props) {
   function _formatTime(hoursFloat) {
-    if (hoursFloat === null || hoursFloat <= 0) {
+    if (hoursFloat === null) {
       return "--:--";
     }
     if (hoursFloat < 1) {
-      return "> 1h";
+      return "less than 1h";
     } else {
       const hours = Math.floor(hoursFloat, 1);
       const minutes = Math.round((hoursFloat - hours) * 60);

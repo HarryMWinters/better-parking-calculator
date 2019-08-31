@@ -10,7 +10,7 @@ function totalReadout(props) {
       return "--:--";
     }
     if (hoursFloat < 1) {
-      return "less than 1h";
+      return "Less than 1h";
     } else {
       const hours = Math.floor(hoursFloat, 1);
       const minutes = Math.round((hoursFloat - hours) * 60);
@@ -29,7 +29,7 @@ function totalReadout(props) {
     <Card>
       <Card.Header style={{ fontWeight: "bold" }}>Price: </Card.Header>
       <Card.Body>
-        <Card.Title> {props.cost ? props.cost : "--"}</Card.Title>
+        <Card.Title> {props.cost ? "$ " + props.cost : "--"}</Card.Title>
       </Card.Body>
     </Card>
   );
@@ -43,9 +43,7 @@ function totalReadout(props) {
                 Total Time:
               </Card.Header>
               <Card.Body>
-                <Card.Title style={{ paddingLeft: "1em" }}>
-                  {_formatTime(props.hours)}
-                </Card.Title>
+                <Card.Title>{_formatTime(props.hours)}</Card.Title>
               </Card.Body>
             </Card>
           </Col>

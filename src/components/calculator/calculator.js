@@ -88,8 +88,9 @@ class calculator extends React.Component {
         ? { price: rate["Per Hour"], errors: "" }
         : { price: rate["Daily Maximum"], errors: "" };
     }
-    const days = Math.floor(hours / 24);
+    let days = Math.floor(hours / 24);
     const weeks = Math.floor(days / 7);
+    days = days % 7;
     const remainder = hours - 24 * days - 24 * 7 * weeks;
     let remainderCost =
       rate["Daily Maximum"] &&

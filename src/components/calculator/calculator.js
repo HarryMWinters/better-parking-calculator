@@ -91,7 +91,7 @@ class calculator extends React.Component {
     let days = Math.floor(hours / 24);
     const weeks = Math.floor(days / 7);
     days = days % 7;
-    const remainder = hours - 24 * days - 24 * 7 * weeks;
+    const remainder = Math.ceil(hours - 24 * days - 24 * 7 * weeks);
     let remainderCost =
       rate["Daily Maximum"] &&
       remainder * rate["Per Hour"] < rate["Daily Maximum"]

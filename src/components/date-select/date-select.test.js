@@ -1,74 +1,56 @@
 import React from "react";
-import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { render, unmountComponentAtNode } from "react-dom";
+import { act } from "react-dom/test-utils";
 
-test("Date-Time select matches snapshot", () => {});
-// function dateTimeSelect(props) {
-//   function _extractDateValue(datetime) {
-//     const monthString =
-//       datetime.getMonth() + 1 < 10
-//         ? "0" + (datetime.getMonth() + 1)
-//         : "" + (datetime.getMonth() + 1);
-//     const dateString =
-//       datetime.getDate() < 10
-//         ? "0" + datetime.getDate()
-//         : "" + datetime.getDate();
-//     const yearMonthDateString =
-//       datetime.getFullYear() + "-" + monthString + "-" + dateString;
-//     return yearMonthDateString;
-//   }
-//   function _extractTimeValue(datetime) {
-//     const hourString =
-//       datetime.getHours() < 10
-//         ? "0" + datetime.getHours()
-//         : "" + datetime.getHours();
-//     const minuteString =
-//       datetime.getMinutes() < 10
-//         ? "0" + datetime.getMinutes()
-//         : datetime.getMinutes();
-//     const timeString = hourString + ":" + minuteString;
-//     return timeString;
-//   }
-//   function _handeDateChange(date) {
-//     let newDate = props.value ? new Date(props.value.getTime()) : new Date();
-//     newDate.setFullYear(
-//       Number(date.slice(0, 4)),
-//       Number(date.slice(5, 7)) - 1,
-//       Number(date.slice(8, 10))
-//     );
-//     props.dateTimeUpdateHandler(newDate);
-//   }
-//   function _handleTimeChange(time) {
-//     let newDate = props.value ? new Date(props.value.getTime()) : new Date();
-//     newDate.setHours(Number(time.slice(0, 2)), Number(time.slice(3, 5)));
-//     props.dateTimeUpdateHandler(newDate);
-//   }
+import DateTimeSelect from "./date-select";
 
-//   return (
-//     <Form>
-//       <Form.Group>
-//         <Form.Label>{props.label}</Form.Label>
-//         <Row>
-//           <Col>
-//             <Form.Control
-//               type="date"
-//               name={props.label}
-//               onBlur={event => _handeDateChange(event.target.value)}
-//               defaultValue={_extractDateValue(new Date())}
-//             />
-//           </Col>
-//           <Col>
-//             <Form.Control
-//               type="time"
-//               onBlur={event => _handleTimeChange(event.target.value)}
-//               defaultValue={_extractTimeValue(new Date())}
-//             />
-//           </Col>
-//         </Row>
-//       </Form.Group>
-//     </Form>
-//   );
-// }
+let container = null;
 
-// export default dateTimeSelect;
+beforeEach(() => {
+  // setup a DOM element as a render target
+  container = document.createElement("div");
+  document.body.appendChild(container);
+});
+
+afterEach(() => {
+  // cleanup on exiting
+  unmountComponentAtNode(container);
+  container.remove();
+  container = null;
+});
+
+it("renders as expected", () => {
+  act(() => {
+    render(<DateTimeSelect label={"testLabel"} />, container);
+  });
+  let title = document.querySelector("label");
+  expect(title.textContent).toBe("testLabel");
+});
+
+it("It focuses and blurs.", () => {
+  act(() => {
+    render(<DateTimeSelect />, container);
+  });
+  const field = document.querySelector(".form-group");
+  act(() => {
+    field.focus();
+    field.blur();
+  });
+});
+
+it("Updates send new date to call back onBlur", () => {
+  const mockDateTimeUpdateHandler = jest.fn();
+  act(() => {
+    render(
+      <DateTimeSelect dateTimeUpdateHandler={mockDateTimeUpdateHandler} />,
+      container
+    );
+  });
+  const field = document.querySelector(".form-control");
+  act(() => {
+    field.focus();
+    field.value = "2019-10-02";
+    field.blur();
+  });
+  expect(mockDateTimeUpdateHandler.mock.calls.length).toBe(1);
+});

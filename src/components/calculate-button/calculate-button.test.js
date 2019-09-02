@@ -2,7 +2,6 @@ import React from "react";
 import { act } from "react-dom/test-utils";
 import { render, unmountComponentAtNode } from "react-dom";
 
-import Button from "react-bootstrap/Button";
 import CalculateButton from "./calculate-button";
 
 let container = null;
@@ -20,12 +19,12 @@ afterEach(() => {
   container = null;
 });
 
-// it("renders as expected", () => {
-//   act(() => {
-//     render(<CalculateButton />, container);
-//   });
-//   expect(container.textContent).toBe("Calculate!");
-// });
+it("renders as expected", () => {
+  act(() => {
+    render(<CalculateButton />, container);
+  });
+  expect(container.textContent).toBe("Calculate!");
+});
 
 it("fires event when clicked.", () => {
   const mockClickHandler = jest.fn();
@@ -37,6 +36,5 @@ it("fires event when clicked.", () => {
   act(() => {
     button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
   });
-  console.log(mockClickHandler.mock);
   expect(mockClickHandler.mock.calls.length).toBe(1);
 });

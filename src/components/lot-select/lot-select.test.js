@@ -1,28 +1,50 @@
 import React from "react";
-import "./lot-select.css";
-import Dropdown from "react-bootstrap/Dropdown";
+import { render, unmountComponentAtNode } from "react-dom";
+import { act } from "react-dom/test-utils";
 
-test("Parking tpye selector matches snapshot.", () => {});
-// function LotSelect(props) {
-//   return (
-//     <div className="Container">
-//       <h4 id="typeSelecth4">Parking Type </h4>
-//       <Dropdown>
-//         <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-//           {props.selected == null ? "Choose Parking Option" : props.selected}
-//         </Dropdown.Toggle>
+import LotSelect from "./lot-select";
 
-//         <Dropdown.Menu>
-//           {/* <Dropdown.Item href="#/action-1">Action</Dropdown.Item> */}
-//           {props.parkingOptions.map(listItem => (
-//             <li key={listItem} onClick={() => props.setChosenOption(listItem)}>
-//               {listItem}
-//             </li>
-//           ))}
-//         </Dropdown.Menu>
-//       </Dropdown>
-//     </div>
-//   );
-// }
+let container = null;
 
-// export default LotSelect;
+beforeEach(() => {
+  // setup a DOM element as a render target
+  container = document.createElement("div");
+  document.body.appendChild(container);
+});
+
+afterEach(() => {
+  // cleanup on exiting
+  unmountComponentAtNode(container);
+  container.remove();
+  container = null;
+});
+
+it("Shows and hides when clicked", () => {
+  act(() => {
+    render(<LotSelect selected={false} parkingOptions={[]} />, container);
+  });
+  const dropDownButton = document.querySelector("#dropdown-basic");
+  act(() => {
+    dropDownButton.click();
+  });
+  const dropDownMenu = document.querySelector(".dropdown-menu");
+  expect(dropDownMenu.className).toBe("dropdown-menu show");
+});
+
+it("Renders with proper options", () => {
+  const mockChoices = ["foo", "bar"];
+  act(() => {
+    render(
+      <LotSelect selected={false} parkingOptions={mockChoices} />,
+      container
+    );
+  });
+  const dropDownButton = document.querySelector("#dropdown-basic");
+  act(() => {
+    dropDownButton.click();
+  });
+  const pType = document.querySelectorAll("li");
+  Object.keys(pType).map(elem => {
+    expect(pType[elem].textContent).toBe(mockChoices[elem]);
+  });
+});

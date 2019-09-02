@@ -44,15 +44,15 @@ class calculator extends React.Component {
   }
 
   setParkingOption(option) {
-    this.setState({ parkingOptionSelected: option, newInput: true });
+    this.setState({ parkingOptionSelected: option });
   }
 
   entryDateTimeUpdateHandler(date) {
-    this.setState({ entryDateTime: date, newInput: true });
+    this.setState({ entryDateTime: date });
   }
 
   exitDateTimeUpdateHandler(date) {
-    this.setState({ exitDateTime: date, newInput: true });
+    this.setState({ exitDateTime: date });
   }
 
   calculateTotal() {
@@ -93,8 +93,7 @@ class calculator extends React.Component {
     days = days % 7;
     const remainder = Math.ceil(hours - 24 * days - 24 * 7 * weeks);
     let remainderCost =
-      rate["Daily Maximum"] &&
-      remainder * rate["Per Hour"] < rate["Daily Maximum"]
+      rate["Per Hour"] && remainder * rate["Per Hour"] < rate["Daily Maximum"]
         ? remainder * rate["Per Hour"]
         : rate["Daily Maximum"];
     const price =

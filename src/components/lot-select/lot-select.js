@@ -5,7 +5,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 function LotSelect(props) {
   return (
     <div className="Container">
-      <h4>Parking Type </h4>
+      <h4 style={{ marginRight: "0.5em" }}>Parking Type </h4>
       <Dropdown>
         <Dropdown.Toggle variant="secondary" id="dropdown-basic">
           {props.selected == null ? "Choose Parking Option" : props.selected}

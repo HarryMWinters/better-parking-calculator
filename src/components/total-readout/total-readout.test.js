@@ -1,58 +1,11 @@
 import React from "react";
-import Card from "react-bootstrap/Card";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
+import renderer from "react-test-renderer";
+import ReadOut from "./total-readout";
+import totalReadout from "./total-readout";
 
-test("Total Readout matches snapshot.", () => {});
-// function totalReadout(props) {
-//   function _formatTime(hoursFloat) {
-//     if (hoursFloat === null) {
-//       return "--:--";
-//     }
-//     if (hoursFloat < 1) {
-//       return "Less than 1h";
-//     } else {
-//       const hours = Math.floor(hoursFloat, 1);
-//       const minutes = Math.round((hoursFloat - hours) * 60);
-//       const minutesString = minutes < 10 ? "0" + minutes : minutes;
-//       return hours + ":" + minutesString;
-//     }
-//   }
-//   const costCard = props.errors ? (
-//     <Card>
-//       <Card.Header style={{ fontWeight: "bold" }}> </Card.Header>
-//       <Card.Body>
-//         <Card.Title>{props.errors}</Card.Title>
-//       </Card.Body>
-//     </Card>
-//   ) : (
-//     <Card>
-//       <Card.Header style={{ fontWeight: "bold" }}>Price: </Card.Header>
-//       <Card.Body>
-//         <Card.Title> {props.cost ? "$ " + props.cost : "--"}</Card.Title>
-//       </Card.Body>
-//     </Card>
-//   );
-//   return (
-//     <div>
-//       <Container style={{ marginTop: "1em" }}>
-//         <Row>
-//           <Col style={{ width: "50%" }}>
-//             <Card>
-//               <Card.Header style={{ fontWeight: "bold" }}>
-//                 Total Time:
-//               </Card.Header>
-//               <Card.Body>
-//                 <Card.Title>{_formatTime(props.hours)}</Card.Title>
-//               </Card.Body>
-//             </Card>
-//           </Col>
-//           <Col style={{ width: "50%" }}>{costCard}</Col>
-//         </Row>
-//       </Container>
-//     </div>
-//   );
-// }
-
-// export default totalReadout;
+it("Matches snapshot", () => {
+  const tree = renderer
+    .create(<totalReadout errors={""} cost={4} hours={2} />)
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});

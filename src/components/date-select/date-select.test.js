@@ -21,7 +21,10 @@ afterEach(() => {
 
 it("renders as expected", () => {
   act(() => {
-    render(<DateTimeSelect label={"testLabel"} />, container);
+    render(
+      <DateTimeSelect label={"testLabel"} value={new Date()} />,
+      container
+    );
   });
   let title = document.querySelector("label");
   expect(title.textContent).toBe("testLabel");
@@ -29,7 +32,7 @@ it("renders as expected", () => {
 
 it("It focuses and blurs.", () => {
   act(() => {
-    render(<DateTimeSelect />, container);
+    render(<DateTimeSelect value={new Date()} />, container);
   });
   const field = document.querySelector(".form-group");
   act(() => {
@@ -42,14 +45,17 @@ it("Updates send new date to call back onBlur", () => {
   const mockDateTimeUpdateHandler = jest.fn();
   act(() => {
     render(
-      <DateTimeSelect dateTimeUpdateHandler={mockDateTimeUpdateHandler} />,
+      <DateTimeSelect
+        dateTimeUpdateHandler={mockDateTimeUpdateHandler}
+        value={new Date()}
+      />,
       container
     );
   });
   const field = document.querySelector(".form-control");
   act(() => {
     field.focus();
-    field.value = "2019-10-02";
+    field.value = new Date();
     field.blur();
   });
   expect(mockDateTimeUpdateHandler.mock.calls.length).toBe(1);

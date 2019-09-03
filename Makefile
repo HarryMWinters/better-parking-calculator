@@ -16,7 +16,7 @@ build_prod:
 	docker build . -t $(DOCKER_NAME)/better-parking-calculator:$(IMAGE_TAG)
 
 run_prod:
-	docker run -p 8000:80 better-parking-calculator
+	docker run -p 8000:80 $(DOCKER_NAME)/better-parking-calculator:$(IMAKE_TAG)
 
 run_dev:
 	npm start

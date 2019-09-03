@@ -15,8 +15,8 @@ function Title() {
         >
           {" "}
           Original app
-        </a>
-        . Background info{" "}
+        </a>{" "}
+        {"(frequently down)"}. Background info{" "}
         <a
           rel="noopener noreferrer"
           href="https://www.infoq.com/news/2010/05/testing_challenge/"

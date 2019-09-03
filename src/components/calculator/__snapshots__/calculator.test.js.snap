@@ -1,0 +1,415 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders correctly when parking type IS selected 1`] = `
+<div
+  className="calculator"
+>
+  <div
+    className="Container"
+  >
+    <h4>
+      Parking Type 
+    </h4>
+    <div
+      className="dropdown"
+      onKeyDown={[Function]}
+    >
+      <button
+        aria-expanded={false}
+        aria-haspopup={true}
+        className="dropdown-toggle btn btn-secondary"
+        disabled={false}
+        id="dropdown-basic"
+        onClick={[Function]}
+        type="button"
+      >
+        Long-Term Garage Parking
+      </button>
+    </div>
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col"
+    >
+      <form
+        className=""
+      >
+        <div
+          className="form-group"
+        >
+          <label
+            className="form-label"
+          >
+            Entered at:
+          </label>
+          <div
+            className="row"
+          >
+            <div
+              className="col"
+            >
+              <input
+                className="form-control"
+                defaultValue="2019-08-02"
+                name="Entered at:"
+                onBlur={[Function]}
+                type="date"
+              />
+            </div>
+            <div
+              className="col"
+            >
+              <input
+                className="form-control"
+                defaultValue="15:16"
+                onBlur={[Function]}
+                type="time"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div
+      className="col"
+    >
+      <form
+        className=""
+      >
+        <div
+          className="form-group"
+        >
+          <label
+            className="form-label"
+          >
+            Exited at: 
+          </label>
+          <div
+            className="row"
+          >
+            <div
+              className="col"
+            >
+              <input
+                className="form-control"
+                defaultValue="2019-09-02"
+                name="Exited at: "
+                onBlur={[Function]}
+                type="date"
+              />
+            </div>
+            <div
+              className="col"
+            >
+              <input
+                className="form-control"
+                defaultValue="15:17"
+                onBlur={[Function]}
+                type="time"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <button
+    className="btn btn-primary btn-block btn-lg"
+    disabled={false}
+    id="calcButton"
+    onClick={[Function]}
+    type="button"
+  >
+    Calculate!
+  </button>
+  <div>
+    <div
+      className="container"
+      style={
+        Object {
+          "marginTop": "1em",
+        }
+      }
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col"
+          style={
+            Object {
+              "width": "50%",
+            }
+          }
+        >
+          <div
+            className="card"
+          >
+            <div
+              className="card-header"
+              style={
+                Object {
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              Total Time:
+            </div>
+            <div
+              className="card-body"
+            >
+              <div
+                className="card-title h5"
+              >
+                --:--
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="col"
+          style={
+            Object {
+              "width": "50%",
+            }
+          }
+        >
+          <div
+            className="card"
+          >
+            <div
+              className="card-header"
+              style={
+                Object {
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              Price: 
+            </div>
+            <div
+              className="card-body"
+            >
+              <div
+                className="card-title h5"
+              >
+                 
+                --
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Renders correctly when parking type is NOT selected 1`] = `
+<div
+  className="calculator"
+>
+  <div
+    className="Container"
+  >
+    <h4>
+      Parking Type 
+    </h4>
+    <div
+      className="dropdown"
+      onKeyDown={[Function]}
+    >
+      <button
+        aria-expanded={false}
+        aria-haspopup={true}
+        className="dropdown-toggle btn btn-secondary"
+        disabled={false}
+        id="dropdown-basic"
+        onClick={[Function]}
+        type="button"
+      >
+        Choose Parking Option
+      </button>
+    </div>
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col"
+    >
+      <form
+        className=""
+      >
+        <div
+          className="form-group"
+        >
+          <label
+            className="form-label"
+          >
+            Entered at:
+          </label>
+          <div
+            className="row"
+          >
+            <div
+              className="col"
+            >
+              <input
+                className="form-control"
+                defaultValue="2019-08-02"
+                name="Entered at:"
+                onBlur={[Function]}
+                type="date"
+              />
+            </div>
+            <div
+              className="col"
+            >
+              <input
+                className="form-control"
+                defaultValue="15:16"
+                onBlur={[Function]}
+                type="time"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div
+      className="col"
+    >
+      <form
+        className=""
+      >
+        <div
+          className="form-group"
+        >
+          <label
+            className="form-label"
+          >
+            Exited at: 
+          </label>
+          <div
+            className="row"
+          >
+            <div
+              className="col"
+            >
+              <input
+                className="form-control"
+                defaultValue="2019-09-02"
+                name="Exited at: "
+                onBlur={[Function]}
+                type="date"
+              />
+            </div>
+            <div
+              className="col"
+            >
+              <input
+                className="form-control"
+                defaultValue="15:16"
+                onBlur={[Function]}
+                type="time"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <button
+    className="btn btn-primary btn-block btn-lg"
+    disabled={false}
+    id="calcButton"
+    onClick={[Function]}
+    type="button"
+  >
+    Calculate!
+  </button>
+  <div>
+    <div
+      className="container"
+      style={
+        Object {
+          "marginTop": "1em",
+        }
+      }
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col"
+          style={
+            Object {
+              "width": "50%",
+            }
+          }
+        >
+          <div
+            className="card"
+          >
+            <div
+              className="card-header"
+              style={
+                Object {
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              Total Time:
+            </div>
+            <div
+              className="card-body"
+            >
+              <div
+                className="card-title h5"
+              >
+                --:--
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="col"
+          style={
+            Object {
+              "width": "50%",
+            }
+          }
+        >
+          <div
+            className="card"
+          >
+            <div
+              className="card-header"
+              style={
+                Object {
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              Price: 
+            </div>
+            <div
+              className="card-body"
+            >
+              <div
+                className="card-title h5"
+              >
+                 
+                --
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

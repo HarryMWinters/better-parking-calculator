@@ -1,43 +1,40 @@
 import React from "react";
-import Table from "react-bootstrap/Table";
+import renderer from "react-test-renderer";
 
-test("Parking Menu matches snapshot.", () => {});
-// function parkingMenu(props) {
-//   const menu = props.parkingInfo;
-//   const parkingTypes = Object.keys(menu);
-//   const pricingTypes = Object.keys(menu[parkingTypes[0]]);
+import ParkingMenu from "./parking-menu";
 
-//   return (
-//     <div>
-//       <Table striped="true">
-//         <thead>
-//           <tr>
-//             <th key="static"></th>
-//             {pricingTypes.map(t => (
-//               <th key={t}>{t}</th>
-//             ))}
-//           </tr>
-//         </thead>
-//         <tbody>{parkingTypes.map(pType => _makeCatagory(pType, menu))}</tbody>
-//       </Table>
-//     </div>
-//   );
-// }
+const parkingInfo = {
+  "Economy Parking": {
+    "Per Hour": 2.0,
+    "Daily Maximum": 9.0,
+    "Per Week": 63.0
+  },
+  "Short-Term Parking": {
+    "Per Hour": 2.0,
+    "Daily Maximum": 24.0,
+    "Per Week": 168.0
+  },
+  "Long-Term Surface Parking": {
+    "Per Hour": 2.0,
+    "Daily Maximum": 12.0,
+    "Per Week": 84.0
+  },
+  "Long-Term Garage Parking": {
+    "Per Hour": 2.0,
+    "Daily Maximum": 17.0,
+    "Per Week": 119.0
+  },
+  "Valet Parking": {
+    "Per Hour": null,
+    // Valet parking is only charged per day.
+    "Daily Maximum": 24.0,
+    "Per Week": 169.0
+  }
+};
 
-// function _makeCatagory(catagoryName, catagoryObject) {
-//   let priceCats = Object.keys(catagoryObject[catagoryName]);
-//   return (
-//     <tr key={catagoryName}>
-//       <td key={catagoryName}>{catagoryName}</td>
-//       {priceCats.map(cat =>
-//         catagoryObject[catagoryName][cat] != null ? (
-//           <td key={cat}>${catagoryObject[catagoryName][cat]}.00</td>
-//         ) : (
-//           <td key={cat}>N/A</td>
-//         )
-//       )}
-//     </tr>
-//   );
-// }
-
-// export default parkingMenu;
+it("Matches snapshot", () => {
+  const tree = renderer
+    .create(<ParkingMenu parkingInfo={parkingInfo} />)
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});

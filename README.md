@@ -20,9 +20,15 @@ This simple react app was inspired by a QA/QC challange roughly based on [this](
 
 A simple interface for entering entry and exit time and viewing price and duration of stay (just in hours and minutes for now) and dynamically generated menu of parking options and their price.
 
-<img src="https://github.com/harrymwinters/better-parking-calculator/blob/master/media/Calculator.png" width=40%>
-<img src="https://github.com/harrymwinters/better-parking-calculator/blob/master/media/Parking Menu.png" width=40%>
-
+<div>
+  <img style="float: left;" 
+       src="https://github.com/harrymwinters/better-parking-calculator/blob/master/media/Calculator.png" 
+       width=40%>
+  <img style="float: right;" 
+       src="https://github.com/harrymwinters/better-parking-calculator/blob/master/media/Parking Menu.png" 
+       width=40% >
+<div/>
+  
 ## Getting Started
 
 There are hopefully self explanatory makefile targets that may require an env variable or to depending on whether docker credentials or image tags need to be specified but all the standard npm/react commands should also work.

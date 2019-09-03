@@ -3,7 +3,13 @@ import Button from "react-bootstrap/Button";
 
 function calculateButton(props) {
   return (
-    <Button variant="primary" size="lg" block onClick={props.handleClick}>
+    <Button
+      variant="primary"
+      size="lg"
+      id="calcButton"
+      block
+      onClick={props.handleClick}
+    >
       Calculate!
     </Button>
   );

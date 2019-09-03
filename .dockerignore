@@ -2,3 +2,6 @@
 node_modules
 build
 package-lock.json
+*test.js
+__snapshots__
+/coverage

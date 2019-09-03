@@ -54,14 +54,14 @@ function dateTimeSelect(props) {
               type="date"
               name={props.label}
               onBlur={event => _handeDateChange(event.target.value)}
-              defaultValue={_extractDateValue(new Date())}
+              defaultValue={_extractDateValue(props.value)}
             />
           </Col>
           <Col>
             <Form.Control
               type="time"
               onBlur={event => _handleTimeChange(event.target.value)}
-              defaultValue={_extractTimeValue(new Date())}
+              defaultValue={_extractTimeValue(props.value)}
             />
           </Col>
         </Row>

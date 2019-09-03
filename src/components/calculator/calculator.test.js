@@ -45,14 +45,14 @@ it("Renders correctly when parking type is NOT selected", () => {
   expect(tree).toMatchSnapshot();
 });
 
-// it("Renders correctly when parking type IS selected", () => {
-//   const entryDate = new Date("2019-08-02T22:16:43.383Z");
-//   const exitDate = new Date("2019-09-02T22:17:43.383Z");
-//   testCalculator.setState({
-//     entryDateTime: entryDate,
-//     exitDateTime: exitDate,
-//     parkingOptionSelected: "Long-Term Garage Parking"
-//   });
-//   const tree = renderer.create(testCalculator).toJSON();
-//   expect(tree).toMatchSnapshot();
-// });
+it("Renders correctly when parking type IS selected", () => {
+  const entryDate = new Date("2019-08-02T22:16:43.383Z");
+  const exitDate = new Date("2019-09-02T22:17:43.383Z");
+  testCalculator.setState({
+    entryDateTime: entryDate,
+    exitDateTime: exitDate,
+    parkingOptionSelected: "Long-Term Garage Parking"
+  });
+  const tree = renderer.create(testCalculator).toJSON();
+  expect(tree).toMatchSnapshot();
+});

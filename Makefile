@@ -2,11 +2,11 @@
 
 IMAGE_TAG := $(IMAGE_TAG)
 ifndef IMAGE_TAG	
-	IMAGE_TAG = DEFAULT
+	IMAGE_TAG = default
 endif
 DOCKER_NAME := $(DOCKER_NAME)
 ifndef DOCKER_NAME	
-	DOCKER_NAME = DEFAULT
+	DOCKER_NAME = harrymwinters
 endif
 
 all:

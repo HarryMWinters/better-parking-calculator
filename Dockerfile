@@ -5,8 +5,6 @@ COPY . ./
 # Yarn's parralelization of package installations 
 # should make it faster than NPM
 RUN yarn
-RUN yarn add react-bootstrap
-RUN yarn add bootstrap
 RUN yarn build
 
 # Set up server

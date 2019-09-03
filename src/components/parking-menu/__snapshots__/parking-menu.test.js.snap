@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Matches snapshot 1`] = `
+<div>
+  <table
+    className="table table-striped"
+  >
+    <thead>
+      <tr>
+        <th />
+        <th>
+          Per Hour
+        </th>
+        <th>
+          Daily Maximum
+        </th>
+        <th>
+          Per Week
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          Economy Parking
+        </td>
+        <td>
+          $
+          2
+          .00
+        </td>
+        <td>
+          $
+          9
+          .00
+        </td>
+        <td>
+          $
+          63
+          .00
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Short-Term Parking
+        </td>
+        <td>
+          $
+          2
+          .00
+        </td>
+        <td>
+          $
+          24
+          .00
+        </td>
+        <td>
+          $
+          168
+          .00
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Long-Term Surface Parking
+        </td>
+        <td>
+          $
+          2
+          .00
+        </td>
+        <td>
+          $
+          12
+          .00
+        </td>
+        <td>
+          $
+          84
+          .00
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Long-Term Garage Parking
+        </td>
+        <td>
+          $
+          2
+          .00
+        </td>
+        <td>
+          $
+          17
+          .00
+        </td>
+        <td>
+          $
+          119
+          .00
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Valet Parking
+        </td>
+        <td>
+          N/A
+        </td>
+        <td>
+          $
+          24
+          .00
+        </td>
+        <td>
+          $
+          169
+          .00
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;

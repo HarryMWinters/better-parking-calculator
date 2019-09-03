@@ -18,10 +18,9 @@ This simple react app was inspired by a QA/QC challange roughly based on [this](
 
 ## Features
 
-A simple interface for entering entry and exit time and viewing price and duration of stay (just in hours and minutes for now).
-<img src="https://github.com/harrymwinters/better-parking-calculator/blob/master/media/Calculator.png" width=40%>
+A simple interface for entering entry and exit time and viewing price and duration of stay (just in hours and minutes for now) and dynamically generated menu of parking options and their price.
 
-A dynamically generated menu of parking options and their price.
+<img src="https://github.com/harrymwinters/better-parking-calculator/blob/master/media/Calculator.png" width=40%>
 <img src="https://github.com/harrymwinters/better-parking-calculator/blob/master/media/Parking Menu.png" width=40%>
 
 ## Getting Started

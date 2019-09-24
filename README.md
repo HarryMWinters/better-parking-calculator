@@ -14,7 +14,7 @@
 
 ## Overview
 
-This simple react app was inspired by a QA/QC challange roughly based on [this](https://www.infoq.com/news/2010/05/testing_challenge/) discussion. The challange inspired me to get reacquainted with the react and I figured I'd try and build a _slightly_ better version of the calculator. This is the result.
+This simple react app was inspired by a QA/QC challenge roughly based on [this](https://www.infoq.com/news/2010/05/testing_challenge/) discussion. The challenge inspired me to get reacquainted with the react and I figured I'd try and build a _slightly_ better version of the calculator. This is the result.
 
 ## Features
 
